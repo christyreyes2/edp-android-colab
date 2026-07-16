@@ -5,6 +5,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
     primary = DarkPrimary,
@@ -26,6 +30,11 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = LightOnSurfaceVariant
 )
 
+// Create a holder for our background gradient
+val LocalBackgroundGradient = staticCompositionLocalOf<Brush> {
+    Brush.verticalGradient(listOf(Color.White, Color.White))
+}
+
 @Composable
 fun ProfileTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -33,8 +42,23 @@ fun ProfileTheme(
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content
-    )
+    // Define the custom gradients:
+    // Dark mode: Orange -> Black
+    // Light mode: Orange -> White
+    val gradient = if (darkTheme) {
+        Brush.verticalGradient(
+            colors = listOf(BrandOrange.copy(alpha = 0.35f), Color(0xFF000000))
+        )
+    } else {
+        Brush.verticalGradient(
+            colors = listOf(BrandOrange.copy(alpha = 0.2f), Color(0xFFFFFFFF))
+        )
+    }
+
+    CompositionLocalProvider(LocalBackgroundGradient provides gradient) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            content = content
+        )
+    }
 }

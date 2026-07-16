@@ -1,13 +1,14 @@
 package com.example.myapplication
 
 import android.content.res.Configuration
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.LocationOn
@@ -18,15 +19,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.R // Explicit import for resources
+import com.example.myapplication.ui.theme.LocalBackgroundGradient
 import com.example.myapplication.ui.theme.ProfileTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen() {
     Scaffold(
+        containerColor = Color.Transparent, // Transparent scaffold lets gradient show through
         topBar = {
             TopAppBar(
                 title = {
@@ -67,25 +74,26 @@ fun ProfileScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(LocalBackgroundGradient.current)
                 .padding(innerPadding)
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Region B: Avatar + Status Badge (Safely using Vector Icon to prevent resource crashes)
+            // Region B: Avatar + status badge (Loads the local profile image resource)
             Box(
                 modifier = Modifier
                     .size(120.dp)
                     .padding(8.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.AccountCircle,
+                Image(
+                    painter = painterResource(id = R.drawable.profile),
                     contentDescription = "Profile Picture",
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(CircleShape)
                         .border(3.dp, MaterialTheme.colorScheme.primary, CircleShape),
-                    tint = MaterialTheme.colorScheme.primary
+                    contentScale = ContentScale.Crop
                 )
                 Box(
                     modifier = Modifier
@@ -134,23 +142,24 @@ fun ProfileScreen() {
                     onClick = { /* Handle Follow */ },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = MaterialTheme.colorScheme.secondary
+                        contentColor = MaterialTheme.colorScheme.primary
                     ),
                     border = ButtonDefaults.outlinedButtonBorder.copy(
-                        brush = androidx.compose.ui.graphics.SolidColor(MaterialTheme.colorScheme.secondary)
+                        brush = androidx.compose.ui.graphics.SolidColor(MaterialTheme.colorScheme.primary)
                     )
                 ) {
                     Text("Follow")
                 }
             }
 
-            // Region E: Stats
+            // Region E: Stats Card
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
-                )
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)
+                ),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
             ) {
                 Row(
                     modifier = Modifier
@@ -159,18 +168,19 @@ fun ProfileScreen() {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     StatItem("1", "Posts")
-                    StatItem("0", "Followers")
+                    StatItem("0.", "Followers")
                     StatItem("0", "Following")
                 }
             }
 
-            // Region F: Contact Info
+            // Region F: Contact Info Card
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
-                )
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)
+                ),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
@@ -223,6 +233,7 @@ fun ContactRow(icon: androidx.compose.ui.graphics.vector.ImageVector, detail: St
     }
 }
 
+// Preview Functions
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
 fun ProfileScreenLightPreview() {

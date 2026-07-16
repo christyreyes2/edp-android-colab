@@ -2,20 +2,24 @@ package com.example.myapplication.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Light Scheme Colors
-val LightPrimary = Color(0xFF2196F3)
-val LightOnPrimary = Color(0xFFFFFFFF)
-val LightPrimaryContainer = Color(0xFF3F51B5)
-val LightSecondary = Color(0xFF2196F3)
-val LightSurface = Color(0xFFFFFBFF)
-val LightOnSurface = Color(0xFF000000)
-val LightOnSurfaceVariant = Color(0xFF5A4D4C)
+// Premium Brand Orange
+val BrandOrange = Color(0xFFFF6F00)       // Deep, vivid orange
+val LightOrangeAccent = Color(0xFFFFE0B2) // Soft pastel orange for container backgrounds
 
-// Dark Scheme Colors
-val DarkPrimary = Color(0xFF2196F3)
-val DarkOnPrimary = Color(0xFF3F51B5)
-val DarkPrimaryContainer = Color(0xFF3F51B5)
-val DarkSecondary = Color(0xFF2196F3)
-val DarkSurface = Color(0xFF1A1110)
-val DarkOnSurface = Color(0xFFFFFBFF)
-val DarkOnSurfaceVariant = Color(0xFFC9B8B7)
+// Light Scheme (Orange and White)
+val LightPrimary = BrandOrange
+val LightOnPrimary = Color(0xFFFFFFFF)
+val LightPrimaryContainer = LightOrangeAccent
+val LightSecondary = Color(0xFFE65100)
+val LightSurface = Color(0xFFFFFFFF)       // Pure White
+val LightOnSurface = Color(0xFF1E1E1E)
+val LightOnSurfaceVariant = Color(0xFF5F5F5F)
+
+// Dark Scheme (Orange and Black)
+val DarkPrimary = BrandOrange
+val DarkOnPrimary = Color(0xFF000000)      // Black text on orange elements
+val DarkPrimaryContainer = Color(0xFF3E1C00)
+val DarkSecondary = Color(0xFFFFB74D)
+val DarkSurface = Color(0xFF000000)       // Pure Black
+val DarkOnSurface = Color(0xFFFFFFFF)
+val DarkOnSurfaceVariant = Color(0xFFB0B0B0)
