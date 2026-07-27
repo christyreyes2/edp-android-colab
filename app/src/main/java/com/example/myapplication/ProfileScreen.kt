@@ -10,10 +10,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Class
+import androidx.compose.material.icons.filled.DriveFileRenameOutline
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Room
+import androidx.compose.material.icons.filled.School
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,20 +44,13 @@ fun ProfileScreen() {
             TopAppBar(
                 title = {
                     Text(
-                        text = "My Profile",
-                        style = MaterialTheme.typography.titleLarge,
+                        text = "",
+                        style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold
                     )
                 },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle Navigation */ }) {
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
-                    }
-                },
+
                 actions = {
-                    IconButton(onClick = { /* Handle Options */ }) {
-                        Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Options")
-                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -62,13 +61,6 @@ fun ProfileScreen() {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { /* Handle Add Action */ },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
-            ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
-            }
         }
     ) { innerPadding ->
         Column(
@@ -117,61 +109,16 @@ fun ProfileScreen() {
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "UI/UX Designer",
+                    text = "BSIT 3-1",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
             // Region D: Action buttons
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Button(
-                    onClick = { /* Handle Message */ },
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    )
-                ) {
-                    Text("Message")
-                }
-                OutlinedButton(
-                    onClick = { /* Handle Follow */ },
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = MaterialTheme.colorScheme.primary
-                    ),
-                    border = ButtonDefaults.outlinedButtonBorder.copy(
-                        brush = androidx.compose.ui.graphics.SolidColor(MaterialTheme.colorScheme.primary)
-                    )
-                ) {
-                    Text("Follow")
-                }
-            }
 
-            // Region E: Stats Card
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)
-                ),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    StatItem("1", "Posts")
-                    StatItem("0.", "Followers")
-                    StatItem("0", "Following")
-                }
-            }
+            // Region E: Stats Car
+
 
             // Region F: Contact Info Card
             Card(
@@ -186,8 +133,13 @@ fun ProfileScreen() {
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
+                    ContactRow(icon = Icons.Default.Person, detail = "Christy Ann E. Reyes")
+                    ContactRow(icon = Icons.Default.School, detail = "Bachelor of Science Information Technology")
+                    ContactRow(icon = Icons.Default.Class, detail = "BSIT 3-1")
+                    ContactRow(icon = Icons.Default.Phone, detail = "09666281947")
                     ContactRow(icon = Icons.Default.Email, detail = "christyreyes4249@gmail.com")
-                    ContactRow(icon = Icons.Default.LocationOn, detail = "Zamboanga Del Sur, Philippines")
+
+
                 }
             }
         }
@@ -222,9 +174,9 @@ fun ContactRow(icon: androidx.compose.ui.graphics.vector.ImageVector, detail: St
             imageVector = icon,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(32.dp)
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(12.dp))
         Text(
             text = detail,
             style = MaterialTheme.typography.bodyMedium,
