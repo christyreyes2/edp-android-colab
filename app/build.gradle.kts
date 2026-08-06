@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    // 1. ADD SERIALIZATION PLUGIN HERE
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -38,6 +40,10 @@ android {
 }
 
 dependencies {
+    // 2. ADD NAVIGATION & SERIALIZATION DEPENDENCIES HERE
+    implementation("androidx.navigation:navigation-compose:2.8.8")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
