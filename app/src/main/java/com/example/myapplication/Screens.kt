@@ -1,4 +1,4 @@
-package com.example.myapplication // 👈 Ensure package matches
+package com.example.myapplication
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

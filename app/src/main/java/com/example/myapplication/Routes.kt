@@ -1,4 +1,4 @@
-package com.example.myapplication // Make sure this matches your package name at the top!
+package com.example.myapplication
 
 import kotlinx.serialization.Serializable
 

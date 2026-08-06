@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-    // 2. ADD NAVIGATION & SERIALIZATION DEPENDENCIES HERE
     implementation("androidx.navigation:navigation-compose:2.8.8")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 

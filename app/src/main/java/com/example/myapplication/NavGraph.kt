@@ -1,4 +1,4 @@
-package com.example.myapplication // 👈 Ensure package matches
+package com.example.myapplication
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -23,7 +23,6 @@ fun AppNavigation(
         startDestination = Home,
         modifier = modifier
     ) {
-        // 1. Home Destination
         composable<Home>(
             exitTransition = { fadeOut(animationSpec = tween(300)) },
             popEnterTransition = { fadeIn(animationSpec = tween(300)) }
@@ -33,7 +32,6 @@ fun AppNavigation(
             })
         }
 
-        // 2. Greeting Destination
         composable<Greeting>(
             enterTransition = {
                 scaleIn(initialScale = 0.7f, animationSpec = tween(400)) + fadeIn(animationSpec = tween(400))
@@ -47,7 +45,6 @@ fun AppNavigation(
         ) { backStackEntry ->
             val greeting: Greeting = backStackEntry.toRoute()
 
-            // ➕ Pass popBackStack() so clicking the button pops the current destination
             GreetingScreen(
                 userName = greeting.userName,
                 onBackClick = { navController.popBackStack() }
