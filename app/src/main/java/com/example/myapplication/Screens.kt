@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication // 👈 Ensure package matches
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// Screen 1: Home Screen where the user inputs their name
 @Composable
 fun HomeScreen(onShowGreeting: (String) -> Unit) {
     var name by remember { mutableStateOf("") }
@@ -43,9 +43,12 @@ fun HomeScreen(onShowGreeting: (String) -> Unit) {
     }
 }
 
-// Screen 2: Greeting Screen that displays the user's name
+// ➕ Added onBackClick callback parameter
 @Composable
-fun GreetingScreen(userName: String) {
+fun GreetingScreen(
+    userName: String,
+    onBackClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -57,5 +60,11 @@ fun GreetingScreen(userName: String) {
             text = "Hello, $userName! Welcome to Jetpack Navigation.",
             fontSize = 22.sp
         )
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // ➕ Back Button
+        OutlinedButton(onClick = onBackClick) {
+            Text("Back to Home")
+        }
     }
 }
