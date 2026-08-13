@@ -17,8 +17,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // 👇 Just call your separated NavHost component here!
-                    AppNavigation(modifier = Modifier.padding(innerPadding))
+                    androidx.compose.foundation.layout.Box(
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
+                        ProfileScreen()
+                    }
                 }
             }
         }
