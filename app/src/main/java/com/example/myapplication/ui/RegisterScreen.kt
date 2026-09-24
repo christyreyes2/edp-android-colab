@@ -1,4 +1,4 @@
 package com.example.myapplication.ui
 
-class PostItem {
+class RegisterScreen {
 }

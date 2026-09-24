@@ -1,4 +1,4 @@
 package com.example.myapplication.ui
 
-class ThemeViewModel {
+class LoginScreen {
 }
