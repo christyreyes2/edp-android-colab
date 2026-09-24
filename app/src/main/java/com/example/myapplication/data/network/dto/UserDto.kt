@@ -1,4 +1,4 @@
-package com.liceo.account.data.network.dto
+package com.example.myapplication.data.network.dto
 
 import kotlinx.serialization.Serializable
 

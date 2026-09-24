@@ -1,6 +1,6 @@
-package com.liceo.account.data.network.dto
+package com.example.myapplication.data.network.dto
 
-import com.liceo.account.domain.model.User
+import com.example.myapplication.domain.model.User
 
 fun UserDto.toDomain(): User = User(
     id = id ?: "",
